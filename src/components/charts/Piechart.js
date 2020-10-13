@@ -14,14 +14,21 @@ export default class PieChart extends React.Component {
               '#40a9ff',
               '#bae7ff',
               '#d9d9d9',
-              '#00474f'
+              '#00474f',
+              '#002329', 
+              '#0050b3',
+              '#9254de', 
+              '#ffd6e7', 
+              '#874d00', 
+              '#7cb305', 
+              '#e6fffb', 
+              '#597ef7', 
+              '#030852', 
+              '#520339', 
+              '#ffd8bf'
             ],
             hoverBackgroundColor: [
-            '#501800',
-            '#4B5000',
-            '#175000',
-            '#003350',
-            '#35014F'
+              '#595959'
             ],
             data: this.props.data || []
           }

@@ -65,7 +65,7 @@ const layout = {
     span: 8,
   },
   wrapperCol: {
-    span: 16,
+    span: 10,
   },
 };
 const tailLayout = {
@@ -78,6 +78,31 @@ const tailLayout = {
 
 
 const Login = ({ history }) => {
+  // const onFinish = (values) => {
+  //   fetch(`${ROOT}auth/login`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       phone: values.phoneNumber,
+  //       password: values.password
+  //     }),
+  //   })
+  //   .then(response => {
+  //     const res = response.json()
+  //     if (response.status === 200 && !!res.token && !!res.user) {
+  //       localStorage.setItem('token', res.token)
+  //       localStorage.setItem('user', res.user)
+  //       history.push('/')
+  //     }
+  //     else {
+  //       alert('Incorrect Credentials :(')
+  //     }
+  //   })
+  // }
+
+
   const onFinish = (values) => {
     fetch(`${ROOT}auth/login`, {
       method: 'POST',
@@ -98,11 +123,14 @@ const Login = ({ history }) => {
       }
     })
     .then(res => {
-      localStorage.setItem('token', res.token)
-      localStorage.setItem('user', res.user)
+      debugger
+      localStorage.setItem('token', res?.token)
+      localStorage.setItem('user', res?.user)
       history.push('/')
     })
   }
+
+
     // axios.post(`${ROOT}auth/login`,
       // {
       //   phone: values.phoneNumber,

@@ -19,7 +19,7 @@ export default class UserRegister extends Component {
     this.state = {
         value: CHART_TYPES.DAY,
         dataSets: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: this.props?.data?.perDay?.map( values => values.hour), 
             datasets: [
                 {
                 label: 'User registered',
@@ -40,7 +40,7 @@ export default class UserRegister extends Component {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: this.props?.data?.perDay?.map( values => values.count), 
                 }
             ]
         }
@@ -91,7 +91,6 @@ export default class UserRegister extends Component {
             if (item === CHART_TYPES.WEEK) {
                 data.labels =  this.props?.data?.perWeek?.map( values => values.week)
                 data.datasets[0]['data'] = this.props?.data?.perWeek?.map( values => values.count)
-                debugger
             }
             if (item === CHART_TYPES.MONTH) {
                 data.labels =  this.props?.data?.perMonth?.map( values => values.month)

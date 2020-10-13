@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Select } from 'antd';
+
 import { Card, Col, Row } from 'antd';
 
 import { Line,  } from "react-chartjs-2";
@@ -7,15 +8,11 @@ import { Line,  } from "react-chartjs-2";
 
 const { Option } = Select;
 
-;
-
 const CHART_TYPES = Object.freeze({
     DAY: 'day',
     WEEK: 'week',
     MONTH: 'month'
 })
-
-
 
 export default class Organisationcount extends Component {
   constructor(props) {
@@ -23,7 +20,7 @@ export default class Organisationcount extends Component {
     this.state = {
         value: CHART_TYPES.DAY,
         dataSets: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: this.props.data.perDay?.map( values => values.hour),
             datasets: [
                 {
                 label: 'Organisation Counts',
@@ -93,7 +90,7 @@ export default class Organisationcount extends Component {
                     }, 
                     {
                       label: " Paid Organisation Counts",
-                      data: [33, 25, 35, 51, 54, 76, 99],
+                      data: this.props.data.perDay?.map( values => values.count),
                       fill: false,
                       borderColor: "#742774"
                     }
@@ -102,9 +99,6 @@ export default class Organisationcount extends Component {
             if (item === CHART_TYPES.DAY) {
                 data.labels = this.props.data.perDay.map( values => values.hour)
                 data.datasets[0]['data'] = this.props.data.perDay.map( values => values.count)
-
-                
-                debugger
             }
             if (item === CHART_TYPES.WEEK) {
                 data.labels = this.props.data.perWeek.map( values => values.week)
@@ -114,10 +108,7 @@ export default class Organisationcount extends Component {
             if (item === CHART_TYPES.MONTH) {
                 data.labels = this.props.data.perMonth.map( values => values.month)
                 data.datasets[0]['data'] = this.props.data.perMonth.map( values => values.count)
-              
-
             }
-
             this.setState({ dataSets: data })
           }}
           value={this.state.value}

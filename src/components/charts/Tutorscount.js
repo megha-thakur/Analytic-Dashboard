@@ -21,7 +21,7 @@ export default class TutorsCount extends Component {
     this.state = {
         value: CHART_TYPES.DAY,
         dataSets: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: this.props.data?.perDay?.map( values => values.hour),
             datasets: [
                 {
                 label: 'My First dataset',
@@ -55,7 +55,7 @@ export default class TutorsCount extends Component {
       <div>
       <Row>
       <Col md={18}>
-              <h2>User Registered</h2>
+              <h2>Tutor Register</h2>
               </Col>
               <Col md={6}>
         <Select
@@ -87,18 +87,18 @@ export default class TutorsCount extends Component {
                 ]
             }
             if (item === CHART_TYPES.DAY) {
-                data.label = ['4 P.M','5 P.M','6 P.M','7 P.M','8 P.M','9 P.M','10 P.M','11 P.M','12 A.M','1 A.M','2 A.M','3 A.M','4 A.M'];
-                data.datasets[0]['data'] = [4,9,6,18,8,1,4,9,7,1,2,3,4];
+                data.label = this.props.data?.perDay?.map( values => values.hour)
+                data.datasets[0]['data'] = this.props.data?.perDay?.map( values => values.count)
             }
             if (item === CHART_TYPES.WEEK) {
-                data.label = ['Sun', 'Mon', 'Tue', 'Wed', 'Thus', 'Fri', 'Sat']
-                data.datasets[0]['data'] = [20,30,66,58,10,59,90];
+                data.label = this.props.data?.perWeek?.map( values => values.week)
+                data.datasets[0]['data'] =  this.props.data?.perWeek?.map( values => values.count)
+
 
             }
             if (item === CHART_TYPES.MONTH) {
-                data.label = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-                data.datasets[0]['data'] = [119,140,250,260,460,578,180,590,470,200,300,500];
-
+                data.label = this.props.data?.perMonth?.map( values => values.month)
+                data.datasets[0]['data'] = this.props.data?.perMonth?.map( values => values.count)
             }
 
             this.setState({ dataSets: data })
@@ -136,3 +136,6 @@ export default class TutorsCount extends Component {
     console.log(datasets[0].data);
   }
 }
+
+
+

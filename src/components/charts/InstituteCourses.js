@@ -14,7 +14,18 @@ export default class InstitutionCourses extends React.Component {
             '#40a9ff',
             '#ffec3d',
             '#bae637',
-            '#d6e4ff'
+            '#d6e4ff', 
+            '#ffd8bf', 
+            '#fff1b8', 
+            '#002329', 
+            '#092b00',
+            '#061178', 
+            '#780650', 
+            '#003a8c', 
+            '#eaff8f', 
+            '#d4b106', 
+            '#69c0ff', 
+            '#120338'
           ],
           hoverBackgroundColor: [
           '#08979c',
