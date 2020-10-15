@@ -63,20 +63,3 @@ export default class InstitutionCourses extends React.Component {
     );
   }
 }
-
-
-
-// <Doughnut
-// data={state}
-// options={{
-//   title:{
-//     display:true,
-//     text:'City Wise Choaching',
-//     fontSize:20
-//   },
-//   legend:{
-//     display:true,
-//     position:'right'
-//   }
-// }}
-// />

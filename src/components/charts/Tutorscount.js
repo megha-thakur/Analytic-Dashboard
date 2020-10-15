@@ -112,18 +112,16 @@ export default class Organisationcount extends Component {
         </Row>
         <Line ref="chart" data={this.state.dataSets} 
         options={
-            {
-                title:{
-                    display: false,
-                    text:'Total Tutor Register',
-                  },
-                legend:{
-                  display:true,
-                  position:'top'
+          {
+              title:{
+                  display:false
+              },
+              legend:{
+                  display:false
+              }
 
-                }, 
-            }
-        }
+          }
+      }
         />
       </div>
     );
