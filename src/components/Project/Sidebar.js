@@ -64,6 +64,31 @@ class Sidebar extends React.Component {
             >
               Revenue
             </Menu.Item>
+            <Menu.Item
+            key="5"
+            onClick={() => {
+              this.props.history.push("./QuizattemptScreen");
+            }}
+          >
+            Quiz Attempts
+          </Menu.Item>
+          <Menu.Item
+          key="6"
+          onClick={() => {
+            this.props.history.push("./Practice");
+          }}
+        >
+          Practice Quiz Attempts
+        </Menu.Item>
+     
+      <Menu.Item
+      key="8"
+      onClick={() => {
+        this.props.history.push("./Quiz");
+      }}
+    >
+      Total Quiz 
+    </Menu.Item>
         </Menu>
       </div>
     );

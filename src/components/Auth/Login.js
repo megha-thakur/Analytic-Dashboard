@@ -62,7 +62,6 @@ const Login = ({ history }) => {
         }
       })
       .then((res) => {
-        debugger;
         localStorage.setItem("token", res?.token);
         localStorage.setItem("user", res?.user);
         history.push("/");

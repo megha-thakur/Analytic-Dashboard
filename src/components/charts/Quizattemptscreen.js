@@ -5,7 +5,7 @@ import UserRegister from './Userregister'
 import Sidebar from "../Project/Sidebar";
 import { MenuFoldOutlined, MenuOutlined } from "@ant-design/icons";
 import Signout from '../Auth/Signout'
-import StudentCount from './StudentCount';
+import Quizateempt from './Quizattempt';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -13,7 +13,7 @@ const { SubMenu } = Menu;
 const ROOT = process.env.REACT_APP_URL;
 
 
-export default class StudentScreen extends Component {
+export default class Quizattemptscreen extends Component {
   state = {
     collapsed: false,
     apiData: [],
@@ -40,7 +40,7 @@ export default class StudentScreen extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token')
     if (token) {
-      fetch(`${ROOT}dashboardAnalytics/studentCount`, {
+      fetch(`${ROOT}dashboardAnalytics/attemptcount/`, {
         method: 'GET',
         headers: {
           "Access-Control-Allow-Credentials": "true",
@@ -74,7 +74,7 @@ export default class StudentScreen extends Component {
             breakpoint="lg"
             theme="light"
           >
-            <Sidebar selectedKey="1" />
+            <Sidebar selectedKey="5" />
           </Sider>
         </Drawer>
         <Sider
@@ -83,7 +83,7 @@ export default class StudentScreen extends Component {
           breakpoint="lg"
           theme="light"
         >
-          <Sidebar selectedKey="3" />
+          <Sidebar selectedKey="5" />
         </Sider>
         <Content>
           <Header
@@ -109,7 +109,7 @@ export default class StudentScreen extends Component {
                       boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                     }}
                   >
-                    <StudentCount  data={this.state.apiData} />
+                    <Quizateempt  data={this.state.apiData} />
                   </Card>
                 </Col>
               </Row>

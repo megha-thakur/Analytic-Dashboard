@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Layout, Menu, Card, Col, Row, Space, PageHeader, Drawer, Button, } from 'antd';
-import TutorsCount from './Tutorscount';
-import UserRegister from './Userregister'
+import TutorsCount from "./Tutorscount";
+import UserRegister from "./Userregister";
 import Sidebar from "../Project/Sidebar";
-import { MenuFoldOutlined, MenuOutlined } from "@ant-design/icons";
 import Signout from '../Auth/Signout'
-import StudentCount from './StudentCount';
+import { MenuFoldOutlined, MenuOutlined } from "@ant-design/icons";
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+import RevenueChart from './Revenue'
+
 
 const ROOT = process.env.REACT_APP_URL;
 
+const { Header, Content, Sider } = Layout;
+const { SubMenu } = Menu;
 
-export default class StudentScreen extends Component {
+export default class LectureScreen extends Component {
   state = {
-    collapsed: false,
-    apiData: [],
-
+   data: []
   };
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -37,30 +37,42 @@ export default class StudentScreen extends Component {
     });
   };
 
-  componentDidMount() {
-    const token = localStorage.getItem('token')
-    if (token) {
-      fetch(`${ROOT}dashboardAnalytics/studentCount`, {
-        method: 'GET',
-        headers: {
-          "Access-Control-Allow-Credentials": "true",
-          authorization: `Bearer ${localStorage.token}`,
-        }
-      })
-        .then(responce => responce.json())
-        .then(res => {
-          this.setState({
-            apiData: res
-          })
-        })
-    } else {
-      this.props.history.push('/login')
-    }
 
+  getTotalRevenue() {
+    fetch(`${ROOT}dashboardAnalytics/totalRevenue/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
+        authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+      .then((responce) => responce.json())
+      .then((resp) => {
+        this.setState({ data: resp});
+      });
   }
+
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.getTotalRevenue()
+    } else {
+      this.props.history.push("/login");
+    }
+  }
+
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  };
+
   render() {
     return (
       <Layout>
+
         <Drawer
           title="Winuall Analytics"
           placement="left"
@@ -74,16 +86,17 @@ export default class StudentScreen extends Component {
             breakpoint="lg"
             theme="light"
           >
-            <Sidebar selectedKey="1" />
+            <Sidebar selectedKey="4" />
           </Sider>
         </Drawer>
+
         <Sider
           trigger={null}
           collapsedWidth={0}
           breakpoint="lg"
           theme="light"
         >
-          <Sidebar selectedKey="3" />
+          <Sidebar selectedKey="4" />
         </Sider>
         <Content>
           <Header
@@ -91,6 +104,7 @@ export default class StudentScreen extends Component {
             style={{ padding: 0, backgroundColor: "#1890ff" }}
           >
             {" "}
+
             <Button
               className="menu"
               type="primary"
@@ -102,14 +116,17 @@ export default class StudentScreen extends Component {
           </Header>
           <Content className="site-layout-background">
             <div className="container-1">
-              <Row gutter={[16, 16]}>
+              <div className="site-card-wrapper">
+           
+              </div>
+              <Row gutter={16}>
                 <Col style={{marginLeft:180}} span={18}>
                   <Card
                     style={{
                       boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                     }}
                   >
-                    <StudentCount  data={this.state.apiData} />
+                    <RevenueChart data={this.state.data} />
                   </Card>
                 </Col>
               </Row>
@@ -117,8 +134,6 @@ export default class StudentScreen extends Component {
           </Content>
         </Content>
       </Layout>
-    )
+    );
   }
-
-
-} 
+}

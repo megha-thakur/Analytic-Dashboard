@@ -87,6 +87,8 @@ export default class StudentCount extends Component {
                     }
                 ]
             }
+            console.log(CHART_TYPES.MONTH)
+            console.log(item)
             if (item === CHART_TYPES.DAY) {
                 data.label = this.props.data?.perDay?.map( values => values.hour);
                 data.datasets[0]['data'] = this.props.data?.perDay?.map( values => values.count);
@@ -96,6 +98,7 @@ export default class StudentCount extends Component {
                 data.datasets[0]['data'] = this.props.data?.perWeek?.map( values => values.count);
             }
             if (item === CHART_TYPES.MONTH) {
+              console.log(this.props.data)
                 data.label =  this.props.data?.perMonth?.map( values => values.month);
                 data.datasets[0]['data'] =this.props.data?.perMonth?.map( values => values.count);
             }

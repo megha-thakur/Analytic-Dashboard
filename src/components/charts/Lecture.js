@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Row, Select, Col } from "antd";
@@ -9,7 +8,7 @@ const CHART_TYPES = Object.freeze({
   WEEK: 'week',
   MONTH: 'month'
 })
-export default class RevenueChart extends React.Component {
+export default class LectureChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

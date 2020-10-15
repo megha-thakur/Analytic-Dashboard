@@ -30,7 +30,8 @@ class Home extends Component {
     courseWiseChoaching: [],
     courseWiseChoachingCount: [],
     totalOrg: 0,
-    visible: false
+    visible: false,
+    studentCount:0
   };
   toggle = () => {
     this.setState({
@@ -49,6 +50,7 @@ class Home extends Component {
       .then((res) => {
         this.setState({
           totalStudent: res.studentCount,
+          studentCount: res.total
         });
       });
   }
@@ -230,7 +232,7 @@ class Home extends Component {
                   </Col>
                   <Col md={6} sm={24}>
                     <Card style={{ borderRadius: "5px" }} title={<h4>Total no of Students</h4>} bordered={false}>
-                      <h2>{this.state.totalStudent}</h2>
+                      <h2>{this.state.studentCount}</h2>
                     </Card>
                   </Col>
                   <Col md={6} sm={24}>
